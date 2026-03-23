@@ -1,0 +1,82 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Event Registration";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Guest Registration</h2>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <strong>Errors:</strong>
+                    <ul>
+                        @foreach (var modelState in ViewData.ModelState.Values)
+                        {
+                            @foreach (var error in modelState.Errors)
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+            <form id="guestForm" onsubmit="submitGuest(event)">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="FullName" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="Email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" id="PhoneNumber" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+            <div id="apiResult" class="mt-3"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function submitGuest(event) {
+            event.preventDefault();
+            const payload = {
+                fullName: document.getElementById('FullName').value,
+                email: document.getElementById('Email').value,
+                phoneNumber: document.getElementById('PhoneNumber').value
+            };
+
+            const result = document.getElementById('apiResult');
+            result.innerHTML = '';
+
+            try {
+                const response = await fetch('/api/guests', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const data = await response.json().catch(() => null);
+                    result.className = 'alert alert-danger';
+                    result.textContent = data?.error || data?.title || 'Failed to submit registration';
+                    return;
+                }
+
+                result.className = 'alert alert-success';
+                result.textContent = 'Registration successful! Redirecting...';
+                setTimeout(() => window.location.href = '/Success', 1500);
+            } catch (error) {
+                result.className = 'alert alert-danger';
+                result.textContent = 'Unexpected error: ' + error.message;
+            }
+        }
+    </script>
+}
