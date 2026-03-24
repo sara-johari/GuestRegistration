@@ -49,7 +49,7 @@ GuestRegistration/
 
 - .NET 10 SDK
 - Azure subscription (or Azure for Students)
-- Azure SQL Database`
+- Azure SQL Database
 
 ## Deployment
 
@@ -57,9 +57,9 @@ GuestRegistration/
 
 1. Create an Azure App Service with .NET 10 runtime
 
-2. Set application settings in Azure Portal:
+2. Set environment variables in Azure Portal:
    - `DefaultConnection` - Your Azure SQL connection string
-   - `AdminPasscode` - Passcode for admin access
+   - `AdminPasscode` - Passcode for admin access in application settings
 
 3. Deploy using one of these methods:
 
