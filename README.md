@@ -3,7 +3,7 @@
 A web application for event guest registration with an admin dashboard for managing entries.
 The live app can be accessed at https://guestregistration.azurewebsites.net or with the QR code below.
 
-<img src="https://github.com/sara-johari/GuestRegistration/images/F71GRB.jpg" height="250">
+![QR code](images/F71GRB.jpg)
 
 
 ## Features
