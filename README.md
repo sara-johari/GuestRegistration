@@ -48,42 +48,8 @@ GuestRegistration/
 ### Prerequisites
 
 - .NET 10 SDK
-- Azure subscription
-- Azure SQL Database
-
-### Local Development
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/GuestRegistration.git
-   cd GuestRegistration
-   ```
-
-2. Add connection string to `appsettings.json`:
-   ```json
-   {
-     "ConnectionStrings": {
-       "DefaultConnection": "Server=...;Database=...;User Id=...;Password=..."
-     }
-   }
-   ```
-
-3. Create the `guests` table in your SQL database:
-   ```sql
-   CREATE TABLE guests (
-       id INT IDENTITY(1,1) PRIMARY KEY,
-       full_name VARCHAR(255) NOT NULL,
-       email VARCHAR(255) NOT NULL,
-       phone INT NOT NULL
-   );
-   ```
-
-4. Run the app:
-   ```bash
-   dotnet run
-   ```
-
-5. Navigate to `http://localhost:5213`
+- Azure subscription (or Azure for Students)
+- Azure SQL Database`
 
 ## Deployment
 
@@ -153,15 +119,7 @@ GuestRegistration/
 
 ## Security
 
-- Credentials stored in Azure Application Settings (not in code)
+- Credentials stored in Azure Environment Variables (not in code)
 - Session-based authentication for admin access
 - HTTPS enforced in production
 - `.gitignore` excludes sensitive files
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
