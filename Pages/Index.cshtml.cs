@@ -18,8 +18,6 @@ public class IndexModel : PageModel {
     public void OnGet() { }
 
     public IActionResult OnPost() {
-        // Old direct-insert behavior is now replaced by API endpoint /api/guests.
-        // This action can stay as a fallback or be used by non-JavaScript clients.
         if (!ModelState.IsValid) return Page();
         return RedirectToPage("Success");
     }
